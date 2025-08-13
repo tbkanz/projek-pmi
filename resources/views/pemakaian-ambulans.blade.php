@@ -2,53 +2,35 @@
 <html>
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Pemakaian Ambulans</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
 
-        h1 {
-            font-weight: bold;
-        }
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
 
-        .table-container {
-            width: 100%;
-            /* tambah ini */
-            overflow-x: auto;
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-            font-size: 15px;
-        }
-
-        .table-container table {
-            width: 100%;
-            /* tambah ini agar tabel stretch */
-        }
-
-        table th,
-        table td {
-            white-space: nowrap;
-            /* agar teks tidak turun ke bawah */
-            vertical-align: middle;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 </head>
 
 <body>
-
-    <div class="container-fluid mt-5">
-        <h1 class="mb-4 text-center">📊 Dashboard Pemakaian Ambulans</h1>
-
-        <div class="mb-3 text-end">
-            <a href="{{ route('pemakaian.create') }}" class="btn btn-primary">Tambah Data</a>
+    <!-- NAVBAR -->
+    <nav class="custom-navbar">
+        <div class="logo">
+            <img class="logo-pmi" src="{{ asset('storage/logo-pmi.png') }}" alt="Logo PMI">
         </div>
+        <h1 class="judul">Dashboard Pemakaian Ambulans</h1>
+    </nav>
 
+    <!-- Tombol Tambah Data -->
+    <div class="text-end mt-3">
+        <a href="{{ route('pemakaian.create') }}" class="btn btn-primary btn-tambah">Tambah Data</a>
+    </div>
+
+    <!-- Tabel Data -->
+    <div class="container-fluid">
         <div class="table-container">
-            <table class="table table-bordered table-striped table-hover align-middle">
+            <table id="ambulansTable" class="table table-bordered table-striped table-hover align-middle">
                 <thead class="table-dark">
                     <tr>
                         <th>No</th>
@@ -91,14 +73,52 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="15" class="text-center text-muted">Belum ada data</td>
+                            <td colspan="16" class="text-center text-muted">Belum ada data</td>
                         </tr>
                     @endforelse
                 </tbody>
             </table>
         </div>
+
+        <!-- Map -->
+        <div>
+            <h1 class="mt-3" style="font-size: 25px;">Map PMI Kota Bogor</h1>
+        </div>
+        <div class="mt-3" style="width:450px; height:350px; margin-bottom:20px;">
+            <iframe width="100%" height="100%" style="border:0;" loading="lazy" allowfullscreen
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps?q=PMI+Bogor,Jawabarat,Indonesia&amp;output=embed">
+            </iframe>
+        </div>
     </div>
 
+    <!-- JQuery + DataTables JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#ambulansTable').DataTable({
+                "pageLength": 5,
+                "lengthMenu": [5, 10, 25, 50, 100], // Tampilkan pilihan 5 juga
+                "language": {
+                    "lengthMenu": "Tampilkan _MENU_ data per halaman",
+                    "zeroRecords": "Tidak ada data ditemukan",
+                    "info": "Menampilkan halaman _PAGE_ dari _PAGES_",
+                    "infoEmpty": "Tidak ada data",
+                    "infoFiltered": "(difilter dari _MAX_ total data)",
+                    "search": "Cari:",
+                    "paginate": {
+                        "first": "Pertama",
+                        "last": "Terakhir",
+                        "next": "›",
+                        "previous": "‹"
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
