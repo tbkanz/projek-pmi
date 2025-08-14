@@ -80,16 +80,27 @@
             </table>
         </div>
 
-        <!-- Map -->
-        <div>
-            <h1 class="mt-3" style="font-size: 25px;">Map PMI Kota Bogor</h1>
+        <!-- Map & Foto Bersebelahan -->
+        <div class="row mt-3 mb-4">
+            <!-- Map -->
+            <div class="col-md-6">
+                <h1 style="font-size: 25px;">Map PMI Kota Bogor</h1>
+                <div style="width:100%; height:350px;">
+                    <iframe width="100%" height="100%" style="border:0;" loading="lazy" allowfullscreen
+                        referrerpolicy="no-referrer-when-downgrade"
+                        src="https://www.google.com/maps?q=PMI+Bogor,Jawabarat,Indonesia&amp;output=embed">
+                    </iframe>
+                </div>
+            </div>
+
+            <!-- Foto -->
+            <div class="col-md-6 d-flex flex-column align-items-center">
+                <h1 style="font-size: 25px;">Foto Kantor PMI</h1>
+                <img class="foto-kantor-pmi" src="{{ asset('storage/foto-kantor-pmi.jpeg') }}" alt="Foto Kantor PMI"
+                    style="width:100%; max-height:350px; object-fit:cover; border-radius:8px;">
+            </div>
         </div>
-        <div class="mt-3" style="width:450px; height:350px; margin-bottom:20px;">
-            <iframe width="100%" height="100%" style="border:0;" loading="lazy" allowfullscreen
-                referrerpolicy="no-referrer-when-downgrade"
-                src="https://www.google.com/maps?q=PMI+Bogor,Jawabarat,Indonesia&amp;output=embed">
-            </iframe>
-        </div>
+        
     </div>
 
     <!-- JQuery + DataTables JS -->
