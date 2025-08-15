@@ -7,6 +7,8 @@
     <title>Form Pemakaian Ambulans</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <!-- SweetAlert CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <navbar class="navbar">
@@ -18,7 +20,7 @@
 
 <body>
     <div class="form-container">
-        <form action="{{ route('pemakaian.store') }}" method="POST">
+        <form id="formAmbulans" action="{{ route('pemakaian.store') }}" method="POST">
             @csrf
             <label>PMI Cabang</label>
             <input type="text" name="pmi_cabang" required placeholder="Masukkan cabang PMI, misal: Bogor">
@@ -58,7 +60,7 @@
                 <option value="Dalam Kota">Dalam Kota</option>
                 <option value="Luar Kota">Luar Kota</option>
             </select>
-            
+
             <label>Dibutuhkan</label>
             <div class="dibutuhkan-group">
                 <label class="radio-option">
@@ -86,5 +88,42 @@
             <button type="submit">Kirim</button>
         </form>
     </div>
+
+    {{-- KONFIRMASI SEBELUM SUBMIT --}}
+    <script>
+        const form = document.getElementById('formAmbulans');
+        form.addEventListener('submit', function (e) {
+            e.preventDefault(); // tahan submit
+
+            Swal.fire({
+                title: 'Kirim Formulir?',
+                text: "Pastikan data sudah benar.",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, kirim',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit(); // submit jika user memilih ya
+                }
+            });
+        });
+    </script>
+
+    {{-- NOTIFIKASI BERHASIL SETELAH REDIRECT --}}
+    @if(session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil',
+                text: '{{ session("success") }}',
+                timer: 2000,
+                showConfirmButton: false
+            }).then(function () {
+                window.location.href = "{{ route('pemakaian-ambulans') }}";
+            });
+        </script>
+    @endif
 </body>
+
 </html>

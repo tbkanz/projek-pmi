@@ -8,7 +8,8 @@
 body {
     font-family: Arial, sans-serif;
     background: #f9f9f9;
-    padding-top: 120px; /* supaya konten tidak ketutup navbar */
+    padding-top: 120px;
+    /* supaya konten tidak ketutup navbar */
 }
 
 /* Navbar */
@@ -23,7 +24,7 @@ body {
     align-items: center;
     justify-content: center;
     gap: 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 1000;
 }
 
@@ -54,6 +55,33 @@ body {
     width: 100%;
     max-width: 700px;
     text-align: center;
+}
+
+#ambulansTable {
+    font-size: 12px;
+    width: 100%;
+}
+
+#ambulansTable th,
+#ambulansTable td {
+    padding: 4px 6px;
+    white-space: normal;       /* <= teks boleh turun ke bawah */
+    word-break: break-word;    /* <= agar teks panjang bisa otomatis pindah baris */
+}
+
+/* Berikan lebar lebih kecil pada beberapa kolom */
+#ambulansTable th:nth-child(1),
+#ambulansTable td:nth-child(1) { width: 40px !important; }   /* No */
+#ambulansTable th:nth-child(4),
+#ambulansTable td:nth-child(4) { width: 75px !important; }   /* Jam */
+#ambulansTable th:nth-child(8),
+#ambulansTable td:nth-child(8) { width: 90px !important; }   /* No Telp */
+#ambulansTable th:nth-child(11),
+#ambulansTable td:nth-child(11) { width: 80px !important; }  /* Tujuan */
+
+.table-container {
+    width: 100%;
+    overflow-x: hidden; /* hilangkan scroll horizontal */
 }
 
 /* Responsive */
