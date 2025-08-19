@@ -24,7 +24,7 @@
     </nav>
 
     <div class="text-end mt-3">
-        <a href="{{ route('pemakaian.create') }}" class="btn btn-primary btn-tambah">Tambah Data</a>
+        <a href="{{ url('form-ambulans') }}" class="btn btn-primary btn-tambah">Tambah Data</a>
     </div>
 
     <!-- Tabel Data -->
