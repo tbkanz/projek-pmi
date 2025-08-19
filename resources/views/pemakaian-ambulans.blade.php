@@ -105,6 +105,7 @@
             $('#ambulansTable').DataTable({
                 pageLength: 5,
                 autoWidth: false,    // <= penting agar width dari CSS diterapkan
+                responsive: true,
                 lengthMenu: [5, 10, 25, 50, 100],
                 language: {
                     lengthMenu: "Tampilkan _MENU_ data per halaman",

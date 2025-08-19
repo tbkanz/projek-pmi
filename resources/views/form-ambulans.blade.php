@@ -22,69 +22,94 @@
     <div class="form-container">
         <form id="formAmbulans" action="{{ route('pemakaian.store') }}" method="POST">
             @csrf
-            <label>PMI Cabang</label>
-            <input type="text" name="pmi_cabang" required placeholder="Masukkan cabang PMI, misal: Bogor">
-
-            <label>Tanggal</label>
-            <input type="date" name="tanggal" required>
-
-            <label>Jam</label>
-            <input type="time" name="jam" required>
-
-            <label>Nama Pemohon</label>
-            <input type="text" name="nama_pemohon" required placeholder="Masukkan nama lengkap">
-
-            <label>Instansi/Organisasi/Perorangan</label>
-            <input type="text" name="instansi" placeholder="Masukkan nama instansi atau organisasi">
-
-            <label>Alamat</label>
-            <textarea name="alamat" placeholder="Masukkan alamat lengkap"></textarea>
-
-            <label>No. Telepon</label>
-            <input type="tel" name="no_telepon" pattern="[0-9]{10,15}" placeholder="Contoh: 081234567890">
-
-            <label>Jenis Ambulans</label>
-            <select name="jenis_ambulans" required>
-                <option value="" disabled selected>-Pilih-</option>
-                <option value="Gawat Darurat">Gawat Darurat</option>
-                <option value="Transportasi">Transportasi</option>
-                <option value="Jenazah">Jenazah</option>
-            </select>
-
-            <label>Untuk Kegiatan</label>
-            <textarea name="untuk_kegiatan" placeholder="Deskripsikan kegiatan penggunaan ambulans"></textarea>
-
-            <label>Tujuan</label>
-            <select name="tujuan" required>
-                <option value="" disabled selected>-Pilih-</option>
-                <option value="Dalam Kota">Dalam Kota</option>
-                <option value="Luar Kota">Luar Kota</option>
-            </select>
-
-            <label>Dibutuhkan</label>
-            <div class="dibutuhkan-group">
-                <label class="radio-option">
-                    <input type="radio" name="kebutuhan" value="Segera" required> Segera
-                </label>
-                <label class="radio-option">
-                    <input type="radio" name="kebutuhan" value="Terencana" required> Terencana
-                </label>
+            <div class="row mb-2">
+                <div class="col-6">
+                    <label>Tanggal</label>
+                    <input type="date" name="tanggal" class="form-control" required>
+                </div>
+                <div class="col-6">
+                    <label>Jam</label>
+                    <input type="time" name="jam" class="form-control" required>
+                </div>
             </div>
 
+            <!-- BARIS 2 -->
+            <div class="row mb-2">
+                <div class="col-6">
+                    <label>Nama Pemohon</label>
+                    <input type="text" name="nama_pemohon" class="form-control" required
+                        placeholder="Masukkan nama lengkap">
+                </div>
+                <div class="col-6">
+                    <label>Instansi/Organisasi/Perorangan</label>
+                    <input type="text" name="instansi" class="form-control"
+                        placeholder="Masukkan nama instansi atau organisasi">
+                </div>
+            </div>
+
+            <!-- BARIS 3 -->
+            <div class="row mb-2">
+                <div class="col-6">
+                    <label>Alamat</label>
+                    <textarea name="alamat" class="form-control" placeholder="Masukkan alamat lengkap"></textarea>
+                </div>
+                <div class="col-6">
+                    <label>No. Telepon</label>
+                    <input type="tel" name="no_telepon" class="form-control" pattern="[0-9]{10,15}"
+                        placeholder="Contoh: 081234567890">
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-6">
+                    <label>Jenis Ambulans</label>
+                    <select name="jenis_ambulans" required>
+                        <option value="" disabled selected>-Pilih-</option>
+                        <option value="Gawat Darurat">Gawat Darurat</option>
+                        <option value="Transportasi">Transportasi</option>
+                        <option value="Jenazah">Jenazah</option>
+                    </select>
+                </div>
+                <div class="col-6">
+                    <label>Untuk Kegiatan</label>
+                    <textarea name="untuk_kegiatan" placeholder="Deskripsikan kegiatan penggunaan ambulans"></textarea>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-6">
+                    <label>Tujuan</label>
+                    <select name="tujuan" required>
+                        <option value="" disabled selected>-Pilih-</option>
+                        <option value="Dalam Kota">Dalam Kota</option>
+                        <option value="Luar Kota">Luar Kota</option>
+                    </select>
+                </div>
+                <div class="col-6">
+                    <label>Dibutuhkan</label>
+                    <div>
+                        <label>
+                            <input type="radio" name="kebutuhan" value="Segera" required> Segera
+                        </label>
+                        <label>
+                            <input type="radio" name="kebutuhan" value="Terencana" required> Terencana
+                        </label>
+                    </div>
+                </div>
+            </div>
             <label>Tanggal Kebutuhan</label>
             <input type="date" name="kebutuhan_tanggal">
 
             <label>Jam Kebutuhan</label>
             <input type="time" name="kebutuhan_jam">
 
-            <label>Administrasi</label>
-            <select name="administrasi" required>
-                <option value="" disabled selected>-Pilih-</option>
-                <option value="Gratis">Gratis</option>
-                <option value="Bayar di Lokasi">Bayar di Lokasi</option>
-                <option value="Bayar di Kantor PMI">Bayar di Kantor PMI</option>
-            </select>
-
+            <div>
+                <label>Administrasi</label>
+                <select name="administrasi" required>
+                    <option value="" disabled selected>-Pilih-</option>
+                    <option value="Gratis">Gratis</option>
+                    <option value="Bayar di Lokasi">Bayar di Lokasi</option>
+                    <option value="Bayar di Kantor PMI">Bayar di Kantor PMI</option>
+                </select>
+            </div>
             <button type="submit">Kirim</button>
         </form>
     </div>
