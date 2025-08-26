@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,19 +8,34 @@
 
     <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
-
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 </head>
-
 <body>
-    <nav class="custom-navbar">
-        <div class="logo">
-            <img class="logo-pmi" src="{{ asset('storage/logo-pmi.png') }}" alt="Logo PMI">
-        </div>
-        <h1 class="judul">Dashboard Pemakaian Ambulans</h1>
-    </nav>
+<!-- Navbar -->
+<nav class="custom-navbar d-flex align-items-center px-3" style="position: relative; height: 70px;">
+    <!-- Logo kiri -->
+    <div class="logo">
+        <img class="logo-pmi" src="{{ asset('storage/logo-pmi.png') }}" alt="Logo PMI" style="height:50px;">
+    </div>
+
+    <!-- Judul di tengah -->
+    <h1 class="judul mb-0" 
+        style="position: absolute; left: 50%; transform: translateX(-50%); font-size: 22px; font-weight: bold;">
+        Dashboard Pemakaian Ambulans
+    </h1>
+
+    <!-- Tombol Logout kanan -->
+    <div class="ms-auto">
+        <form action="{{ route('logout') }}" method="POST" class="d-inline">
+            @csrf
+            <button type="submit" class="btn btn-danger px-4">Logout</button>
+        </form>
+    </div>
+</nav>
+
+
+
 
     <div class="text-end mt-3">
         <a href="{{ url('form-ambulans') }}" class="btn btn-primary btn-tambah">Tambah Data</a>
@@ -78,8 +92,7 @@
             <div class="col-md-6">
                 <h1 style="font-size: 25px;">Map PMI Kota Bogor</h1>
                 <div style="width:100%; height:350px;">
-                    <iframe width="100%" height="100%" style="border:0;" loading="lazy" allowfullscreen
-                        referrerpolicy="no-referrer-when-downgrade"
+                    <iframe width="100%" height="100%" style="border:0;" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
                         src="https://www.google.com/maps?q=PMI+Bogor,Jawabarat,Indonesia&amp;output=embed">
                     </iframe>
                 </div>
@@ -89,10 +102,9 @@
             <div class="col-md-6 d-flex flex-column align-items-center">
                 <h1 style="font-size: 25px;">Foto Kantor PMI</h1>
                 <img class="foto-kantor-pmi" src="{{ asset('storage/foto-kantor-pmi.jpeg') }}" alt="Foto Kantor PMI"
-                    style="width:100%; max-height:350px; object-fit:cover; border-radius:8px;">
+                     style="width:100%; max-height:350px; object-fit:cover; border-radius:8px;">
             </div>
         </div>
-
     </div>
 
     <!-- JQuery + DataTables JS -->
@@ -104,7 +116,7 @@
         $(document).ready(function () {
             $('#ambulansTable').DataTable({
                 pageLength: 5,
-                autoWidth: false,    // <= penting agar width dari CSS diterapkan
+                autoWidth: false, // <= penting agar width dari CSS diterapkan
                 responsive: true,
                 lengthMenu: [5, 10, 25, 50, 100],
                 language: {
@@ -123,22 +135,19 @@
                 }
             });
         });
-
     </script>
 
     {{-- SweetAlert notifikasi berhasil setelah redirect --}}
     @if(session('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Berhasil',
-                text: '{{ session("success") }}',
-                timer: 2000,
-                showConfirmButton: false
-            });
-        </script>
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: '{{ session("success") }}',
+            timer: 2000,
+            showConfirmButton: false
+        });
+    </script>
     @endif
-
 </body>
-
 </html>
