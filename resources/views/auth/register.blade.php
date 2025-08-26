@@ -1,127 +1,172 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Register Pengguna</title>
 
     <style>
         body {
             margin: 0;
             padding: 0;
-            background: #ffffff;
+            background: #f7f7f7;
             font-family: Arial, sans-serif;
         }
 
-        .logo-pmi {
-            width: 150px;
+        .header {
+            background-color: #c62828;
+            color: #fff;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 24px;
+            font-weight: bold;
         }
 
-        .logo {
-            position: absolute;
-            top: 20px;
-            left: 20px;
+        .header i {
+            font-size: 40px;
+            margin-bottom: 10px;
+            display: block;
         }
 
         .container {
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh;
+            margin-top: 50px;
         }
 
         .card {
             width: 380px;
-            padding: 30px;
-            border: 1px solid #ccc;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
         }
 
-        .card h2 {
+        .card-header {
+            background: #c62828;
+            color: #fff;
             text-align: center;
-            margin-bottom: 20px;
+            padding: 15px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .card-body {
+            padding: 25px;
         }
 
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .form-group label {
+            font-weight: bold;
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
         }
 
         .form-group input {
             width: 100%;
-            padding: 8px;
+            padding: 10px;
             border: 1px solid #ccc;
-            border-radius: 4px;
+            border-radius: 6px;
+            font-size: 14px;
         }
 
         .btn {
             width: 100%;
-            padding: 10px;
-            background: #e43d3d;
+            padding: 12px;
+            background: #d32f2f;
             border: none;
             color: #fff;
+            font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            border-radius: 4px;
+            border-radius: 6px;
         }
 
         .btn:hover {
-            background: #c73232;
+            background: #b71c1c;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .register-link a {
+            color: #d32f2f;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        .error {
+            color: red;
+            font-size: 13px;
+            margin-top: 6px;
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Logo -->
-    <div class="logo">
-        <img class="logo-pmi" src="{{ asset('storage/logo-pmi.png') }}" alt="Logo PMI">
+    <!-- Header -->
+    <div class="header">
+        <i>🚑</i>
+        Pemakaian Ambulans
     </div>
 
     <!-- Container -->
     <div class="container">
         <div class="card">
-            <h2>Register</h2>
-            <form method="POST" action="{{ route('register') }}">
-                @csrf
+            <div class="card-header">Register Pengguna</div>
+            <div class="card-body">
 
-                <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" name="name" value="{{ old('name') }}" required>
-                    @error('name')
-                        <div style="color:red; font-size:12px;">{{ $message }}</div>
-                    @enderror
+                <form method="POST" action="{{ route('register') }}">
+                    @csrf
+
+                    <div class="form-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" name="name" value="{{ old('name') }}" placeholder="Masukkan nama lengkap" required>
+                        @error('name')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" value="{{ old('email') }}" placeholder="Masukkan email" required>
+                        @error('email')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" name="password" placeholder="Masukkan password" required>
+                        @error('password')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label>Konfirmasi Password</label>
+                        <input type="password" name="password_confirmation" placeholder="Ulangi password" required>
+                    </div>
+
+                    <button type="submit" class="btn">📝 REGISTER</button>
+                </form>
+
+                <div class="register-link">
+                    Sudah punya akun? <a href="{{ route('login') }}">Login</a>
                 </div>
-
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" name="email" value="{{ old('email') }}" required>
-                    @error('email')
-                        <div style="color:red; font-size:12px;">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" name="password" required>
-                    @error('password')
-                        <div style="color:red; font-size:12px;">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="form-group">
-                    <label>Confirm Password</label>
-                    <input type="password" name="password_confirmation" required>
-                </div>
-
-                <button type="submit" class="btn">Register</button>
-            </form>
+            </div>
         </div>
     </div>
 
