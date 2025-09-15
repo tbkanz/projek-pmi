@@ -7,119 +7,151 @@
     <title>Form Pemakaian Ambulans</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <!-- SweetAlert CDN -->
+    <!-- SweetAlert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
-<navbar class="navbar">
-    <div class="logo">
-        <img class="logo-pmi" src="{{ asset('storage/logo-pmi.png') }}" alt="Logo PMI">
-    </div>
-    <h1 class="judul">Formulir Pemakaian Ambulans PMI Kota Bogor</h1>
-</navbar>
-
 <body>
-    <div class="form-container">
-        <form id="formAmbulans" action="{{ route('pemakaian.store') }}" method="POST">
-            @csrf
-            <div class="row mb-2">
-                <div class="col-6">
-                    <label>Tanggal</label>
-                    <input type="date" name="tanggal" class="form-control" required>
-                </div>
-                <div class="col-6">
-                    <label>Jam</label>
-                    <input type="time" name="jam" class="form-control" required>
-                </div>
-            </div>
+    <!-- NAVBAR -->
+    <nav class="navbar bg-light px-3">
+        <div class="d-flex align-items-center">
+            <img class="logo-pmi" src="{{ asset('storage/logo-pmi.png') }}" alt="Logo PMI" height="50">
+            <h1 class="ms-3 h4">Formulir Pemakaian Ambulans PMI Kota Bogor</h1>
+        </div>
+    </nav>
 
-            <!-- BARIS 2 -->
-            <div class="row mb-2">
-                <div class="col-6">
-                    <label>Nama Pemohon</label>
-                    <input type="text" name="nama_pemohon" class="form-control" required
-                        placeholder="Masukkan nama lengkap">
-                </div>
-                <div class="col-6">
-                    <label>Instansi/Organisasi/Perorangan</label>
-                    <input type="text" name="instansi" class="form-control"
-                        placeholder="Masukkan nama instansi atau organisasi">
-                </div>
-            </div>
+    <!-- FORM CARD -->
+    <div class="container my-4">
+        <div class="card shadow p-4">
+            <form id="formAmbulans" action="{{ route('pemakaian.store') }}" method="POST">
+                @csrf
 
-            <!-- BARIS 3 -->
-            <div class="row mb-2">
-                <div class="col-6">
-                    <label>Alamat</label>
-                    <textarea name="alamat" class="form-control" placeholder="Masukkan alamat lengkap"></textarea>
-                </div>
-                <div class="col-6">
-                    <label>No. Telepon</label>
-                    <input type="tel" name="no_telepon" class="form-control" pattern="[0-9]{10,15}"
-                        placeholder="Contoh: 081234567890">
-                </div>
-            </div>
-            <div class="row mb-2">
-                <div class="col-6">
-                    <label>Jenis Ambulans</label>
-                    <select name="jenis_ambulans" required>
-                        <option value="" disabled selected>-Pilih-</option>
-                        <option value="Gawat Darurat">Gawat Darurat</option>
-                        <option value="Transportasi">Transportasi</option>
-                        <option value="Jenazah">Jenazah</option>
-                    </select>
-                </div>
-                <div class="col-6">
-                    <label>Untuk Kegiatan</label>
-                    <textarea name="untuk_kegiatan" placeholder="Deskripsikan kegiatan penggunaan ambulans"></textarea>
-                </div>
-            </div>
-            <div class="row mb-2">
-                <div class="col-6">
-                    <label>Tujuan</label>
-                    <select name="tujuan" required>
-                        <option value="" disabled selected>-Pilih-</option>
-                        <option value="Dalam Kota">Dalam Kota</option>
-                        <option value="Luar Kota">Luar Kota</option>
-                    </select>
-                </div>
-                <div class="col-6">
-                    <label>Dibutuhkan</label>
-                    <div>
-                        <label>
-                            <input type="radio" name="kebutuhan" value="Segera" required> Segera
-                        </label>
-                        <label>
-                            <input type="radio" name="kebutuhan" value="Terencana" required> Terencana
-                        </label>
+                <!-- BARIS 1 -->
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="tanggal" class="form-label">Tanggal</label>
+                        <input type="date" id="tanggal" name="tanggal"
+                               class="form-control" value="{{ old('tanggal') }}" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="jam" class="form-label">Jam</label>
+                        <input type="time" id="jam" name="jam"
+                               class="form-control" value="{{ old('jam') }}" required>
                     </div>
                 </div>
-            </div>
-            <label>Tanggal Kebutuhan</label>
-            <input type="date" name="kebutuhan_tanggal">
 
-            <label>Jam Kebutuhan</label>
-            <input type="time" name="kebutuhan_jam">
+                <!-- BARIS 2 -->
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="nama_pemohon" class="form-label">Nama Pemohon</label>
+                        <input type="text" id="nama_pemohon" name="nama_pemohon"
+                               class="form-control" value="{{ old('nama_pemohon') }}"
+                               required placeholder="Masukkan nama lengkap">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="instansi" class="form-label">Instansi/Organisasi/Perorangan</label>
+                        <input type="text" id="instansi" name="instansi"
+                               class="form-control" value="{{ old('instansi') }}"
+                               placeholder="Masukkan instansi atau organisasi">
+                    </div>
+                </div>
 
-            <div>
-                <label>Administrasi</label>
-                <select name="administrasi" required>
-                    <option value="" disabled selected>-Pilih-</option>
-                    <option value="Gratis">Gratis</option>
-                    <option value="Bayar di Lokasi">Bayar di Lokasi</option>
-                    <option value="Bayar di Kantor PMI">Bayar di Kantor PMI</option>
-                </select>
-            </div>
-            <button type="submit">Kirim</button>
-        </form>
+                <!-- BARIS 3 -->
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="alamat" class="form-label">Alamat</label>
+                        <textarea id="alamat" name="alamat" class="form-control"
+                                  placeholder="Masukkan alamat lengkap" required>{{ old('alamat') }}</textarea>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="no_telepon" class="form-label">No. Telepon</label>
+                        <input type="tel" id="no_telepon" name="no_telepon"
+                               class="form-control" pattern="[0-9]{10,15}"
+                               value="{{ old('no_telepon') }}" placeholder="Contoh: 081234567890" required>
+                    </div>
+                </div>
+
+                <!-- BARIS 4 -->
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="jenis_ambulans" class="form-label">Jenis Ambulans</label>
+                        <select id="jenis_ambulans" name="jenis_ambulans" class="form-select" required>
+                            <option value="" disabled selected>-Pilih-</option>
+                            <option value="Gawat Darurat" {{ old('jenis_ambulans') == 'Gawat Darurat' ? 'selected' : '' }}>Gawat Darurat</option>
+                            <option value="Transportasi" {{ old('jenis_ambulans') == 'Transportasi' ? 'selected' : '' }}>Transportasi</option>
+                            <option value="Jenazah" {{ old('jenis_ambulans') == 'Jenazah' ? 'selected' : '' }}>Jenazah</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="untuk_kegiatan" class="form-label">Untuk Kegiatan</label>
+                        <textarea id="untuk_kegiatan" name="untuk_kegiatan"
+                                  class="form-control" placeholder="Deskripsikan kegiatan penggunaan ambulans" required>{{ old('untuk_kegiatan') }}</textarea>
+                    </div>
+                </div>
+
+                <!-- BARIS 5 -->
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="tujuan" class="form-label">Tujuan</label>
+                        <select id="tujuan" name="tujuan" class="form-select" required>
+                            <option value="" disabled selected>-Pilih-</option>
+                            <option value="Dalam Kota" {{ old('tujuan') == 'Dalam Kota' ? 'selected' : '' }}>Dalam Kota</option>
+                            <option value="Luar Kota" {{ old('tujuan') == 'Luar Kota' ? 'selected' : '' }}>Luar Kota</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Dibutuhkan</label><br>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" id="segera" name="kebutuhan" value="Segera"
+                                   class="form-check-input" {{ old('kebutuhan') == 'Segera' ? 'checked' : '' }} required>
+                            <label for="segera" class="form-check-label">Segera</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" id="terencana" name="kebutuhan" value="Terencana"
+                                   class="form-check-input" {{ old('kebutuhan') == 'Terencana' ? 'checked' : '' }} required>
+                            <label for="terencana" class="form-check-label">Terencana</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BARIS 6 -->
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="kebutuhan_tanggal" class="form-label">Tanggal Kebutuhan</label>
+                        <input type="date" id="kebutuhan_tanggal" name="kebutuhan_tanggal"
+                               class="form-control" value="{{ old('kebutuhan_tanggal') }}">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="kebutuhan_jam" class="form-label">Jam Kebutuhan</label>
+                        <input type="time" id="kebutuhan_jam" name="kebutuhan_jam"
+                               class="form-control" value="{{ old('kebutuhan_jam') }}">
+                    </div>
+                </div>
+
+                <!-- BARIS 7 -->
+                <div class="mb-3">
+                    <label for="administrasi" class="form-label">Administrasi</label>
+                    <select id="administrasi" name="administrasi" class="form-select" required>
+                        <option value="" disabled selected>-Pilih-</option>
+                        <option value="Gratis" {{ old('administrasi') == 'Gratis' ? 'selected' : '' }}>Gratis</option>
+                        <option value="Bayar di Lokasi" {{ old('administrasi') == 'Bayar di Lokasi' ? 'selected' : '' }}>Bayar di Lokasi</option>
+                        <option value="Bayar di Kantor PMI" {{ old('administrasi') == 'Bayar di Kantor PMI' ? 'selected' : '' }}>Bayar di Kantor PMI</option>
+                    </select>
+                </div>
+
+                <!-- SUBMIT -->
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary">Kirim</button>
+                </div>
+            </form>
+        </div>
     </div>
 
-    {{-- KONFIRMASI SEBELUM SUBMIT --}}
+    <!-- KONFIRMASI SUBMIT -->
     <script>
         const form = document.getElementById('formAmbulans');
         form.addEventListener('submit', function (e) {
-            e.preventDefault(); // tahan submit
-
+            e.preventDefault();
             Swal.fire({
                 title: 'Kirim Formulir?',
                 text: "Pastikan data sudah benar.",
@@ -129,13 +161,13 @@
                 cancelButtonText: 'Batal'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    form.submit(); // submit jika user memilih ya
+                    form.submit();
                 }
             });
         });
     </script>
 
-    {{-- NOTIFIKASI BERHASIL SETELAH REDIRECT --}}
+    <!-- NOTIFIKASI BERHASIL -->
     @if(session('success'))
         <script>
             Swal.fire({
@@ -143,12 +175,12 @@
                 title: 'Berhasil',
                 text: '{{ session("success") }}',
                 timer: 2000,
-                showConfirmButton: false
-            }).then(function () {
-                window.location.href = "{{ route('pemakaian-ambulans') }}";
+                showConfirmButton: false,
+                didClose: () => {
+                    window.location.href = "{{ route('pemakaian.index') }}";
+                }
             });
         </script>
     @endif
 </body>
-
 </html>

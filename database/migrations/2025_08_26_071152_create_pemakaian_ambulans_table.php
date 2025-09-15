@@ -10,20 +10,19 @@ return new class extends Migration
     {
         Schema::create('pemakaian_ambulans', function (Blueprint $table) {
             $table->id();
-            $table->string('pmi_cabang');
             $table->date('tanggal');
             $table->time('jam');
             $table->string('nama_pemohon');
             $table->string('instansi')->nullable();
             $table->text('alamat')->nullable();
-            $table->string('no_telepon')->nullable();
-            $table->enum('jenis_ambulans', ['Gawat Darurat', 'Transportasi', 'Jenazah']);
-            $table->text('untuk_kegiatan')->nullable();
-            $table->enum('tujuan', ['Dalam Kota', 'Luar Kota']);
-            $table->enum('kebutuhan', ['Segera', 'Terencana']);
-            $table->date('kebutuhan_tanggal')->nullable();
-            $table->time('kebutuhan_jam')->nullable();
-            $table->enum('administrasi', ['Gratis', 'Bayar di Lokasi', 'Bayar di Kantor PMI']);
+            $table->string('no_telepon', 20)->nullable();
+            $table->string('jenis_ambulans');
+            $table->string('untuk_kegiatan')->nullable();
+            $table->string('tujuan')->nullable();
+            $table->string('kebutuhan')->nullable();
+            $table->date('kebutuhan_tanggal');
+            $table->time('kebutuhan_jam');
+            $table->string('administrasi')->nullable();
             $table->timestamps();
         });
     }

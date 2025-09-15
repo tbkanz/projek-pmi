@@ -10,7 +10,6 @@ class PemakaianAmbulans extends Model
     use HasFactory;
 
     protected $fillable = [
-        'pmi_cabang',
         'tanggal',
         'jam',
         'nama_pemohon',
@@ -23,6 +22,6 @@ class PemakaianAmbulans extends Model
         'kebutuhan',
         'kebutuhan_tanggal',
         'kebutuhan_jam',
-        'administrasi',
+        'administrasi'
     ];
 }
