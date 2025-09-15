@@ -15,7 +15,6 @@
     <!-- SweetAlert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-
 <body>
     <!-- Navbar -->
     <nav class="custom-navbar d-flex align-items-center px-3">
@@ -169,16 +168,15 @@
 
     <!-- SweetAlert -->
     @if(session('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Berhasil',
-                text: '{{ session("success") }}',
-                timer: 2000,
-                showConfirmButton: false
-            });
-        </script>
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: '{{ session("success") }}',
+            timer: 2000,
+            showConfirmButton: false
+        });
+    </script>
     @endif
-
 </body>
 </html>
