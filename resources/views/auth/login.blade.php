@@ -170,7 +170,7 @@
     <!-- Header -->
     <div class="header">
         <!-- Logo PMI -->
-<img src="{{ asset('images/logo-pmi.png') }}" alt="Logo PMI" class="logo-pmi">
+<img src="{{ asset('public/logo-pmi.png') }}" alt="Logo PMI" class="logo-pmi">
 
 
         <!-- Ambulans -->
@@ -179,7 +179,8 @@
             <span>🚑</span>
         </div>
 
-        <div>Pemakaian Ambulans</div>
+        <div>Pemakaian Ambulans PMI Kota Bogor
+        </div>
     </div>
 
     <!-- Container -->
