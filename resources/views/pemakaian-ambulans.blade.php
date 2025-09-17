@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   
+
+
+</script>
 
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
