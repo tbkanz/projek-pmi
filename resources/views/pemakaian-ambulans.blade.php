@@ -20,7 +20,7 @@
         <div class="logo">
             <img class="logo-pmi" src="{{ asset('storage/logo-pmi.png') }}" alt="Logo PMI">
         </div>
-        <h1 class="judul ms-3">Pemakaian Ambulanssss</h1>
+        <h1 class="judul ms-3">Pemakaian Ambulansss</h1>
         <div class="ms-auto">
             <form action="{{ route('logout') }}" method="POST" class="d-inline">
                 @csrf
