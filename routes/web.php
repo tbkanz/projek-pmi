@@ -10,10 +10,9 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-// Halaman utama -> langsung ke pemakaian ambulans
-Route::get('/pemakaian-ambulans', [PemakaianAmbulansController::class, 'index'])
-    ->middleware(['auth', 'verified'])
-    ->name('pemakaian-ambulans.index');
+// Resource route untuk pemakaian ambulans
+Route::resource('pemakaian-ambulans', PemakaianAmbulansController::class)
+    ->middleware(['auth', 'verified']);
 
 // Register
 Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
@@ -24,21 +23,6 @@ Route::post('/logout', function () {
     auth()->logout();
     return redirect()->route('login');
 })->name('logout');
-
-// Form tambah data ambulans
-Route::get('/pemakaian-ambulans/create', [PemakaianAmbulansController::class, 'create'])
-    ->middleware('auth')
-    ->name('pemakaian-ambulans.create');
-
-Route::post('/pemakaian-ambulans', [PemakaianAmbulansController::class, 'store'])
-    ->middleware('auth')
-    ->name('pemakaian-ambulans.store');
-
-Route::get('/form-ambulans', [PemakaianAmbulansController::class, 'create'])->name('form-ambulans');
-Route::post('/form-ambulans', [PemakaianAmbulansController::class, 'store'])->name('pemakaian.store');
-
-Route::get('/pemakaian', [PemakaianController::class, 'index'])->name('pemakaian.index');
-Route::post('/pemakaian', [PemakaianController::class, 'store'])->name('pemakaian.store');
 
 // Profile
 Route::middleware('auth')->group(function () {

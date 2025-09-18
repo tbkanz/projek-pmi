@@ -11,8 +11,8 @@ return new class extends Migration
         Schema::create('pemakaian_ambulans', function (Blueprint $table) {
             $table->id();
             $table->date('tanggal');
-            $table->time('jam');
-            $table->string('nama_pemohon');
+            $table->time('waktu');
+            $table->string('nama_pasien');
             $table->string('instansi')->nullable();
             $table->text('alamat')->nullable();
             $table->string('no_telepon', 20)->nullable();

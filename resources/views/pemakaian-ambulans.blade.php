@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,7 +31,7 @@
 
     <!-- Tombol Tambah -->
     <div class="text-end mt-3 me-3">
-        <a href="{{ route('form-ambulans') }}" class="btn btn-primary btn-tambah">Tambah Data</a>
+        <a href="{{ route('pemakaian-ambulans.create') }}" class="btn btn-primary btn-tambah">Tambah Data</a>
     </div>
 
     <!-- Tabel Data -->
@@ -62,7 +61,7 @@
                             <td>{{ $item->kebutuhan }}</td>
                             <td>{{ $item->kebutuhan_tanggal }}</td>
                             <td>{{ $item->kebutuhan_jam }}</td>
-                            <td>{{ $item->nama_pemohon }}</td>
+                            <td>{{ $item->nama_pasien }}</td>
                             <td>{{ $item->instansi }}</td>
                             <td>{{ $item->alamat }}</td>
                             <td>{{ $item->no_telepon }}</td>
@@ -160,7 +159,12 @@
                     infoEmpty: "Tidak ada data",
                     infoFiltered: "(difilter dari _MAX_ total data)",
                     search: "Cari:",
-                    paginate: { first: "Pertama", last: "Terakhir", next: "›", previous: "‹" }
+                    paginate: {
+                        first: "Pertama",
+                        last: "Terakhir",
+                        next: "›",
+                        previous: "‹"
+                    }
                 }
             });
         });
