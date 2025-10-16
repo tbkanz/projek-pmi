@@ -15,12 +15,13 @@
         }
 
         .header {
-            background-color: #c62828;
-            color: #fff;
+            background-color: #f7f7f7;
+            color: #000;
             text-align: center;
             padding: 30px 20px;
             font-size: 24px;
             font-weight: bold;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
             position: relative;
             overflow: hidden;
         }
@@ -28,9 +29,9 @@
         /* Logo PMI */
         .logo-pmi {
             position: absolute;
-            top: 15px;
+            top: 25px;
             right: 20px;
-            width: 60px;
+            width: 125px;
             height: auto;
         }
 
@@ -170,7 +171,7 @@
     <!-- Header -->
     <div class="header">
         <!-- Logo PMI -->
-<img src="{{ asset('images/logo-pmi.png') }}" alt="Logo PMI" class="logo-pmi">
+<img src="{{ asset('storage/logo-pmi.png') }}" alt="Logo PMI" class="logo-pmi">
 
 
         <!-- Ambulans -->
