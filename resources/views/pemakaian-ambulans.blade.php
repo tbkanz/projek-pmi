@@ -13,6 +13,23 @@
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
     <!-- SweetAlert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        /* PERBAIKAN: agar ukuran map dan foto selalu sama */
+        .media-wrapper {
+            width: 100%;
+            height: 320px;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .media-wrapper iframe,
+        .media-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -81,20 +98,28 @@
 
         <!-- Map & Foto -->
         <div class="row mt-3 mb-4">
+
             <div class="col-md-6">
                 <div class="info-card">
                     <h1 class="section-title">Map PMI Kota Bogor</h1>
-                    <div style="width:100%; height:320px;">
+
+                    <!-- PERBAIKAN WRAPPER -->
+                    <div class="media-wrapper">
                         <iframe src="https://www.google.com/maps/embed?pb=..."
-                                width="100%" height="100%" style="border:0;" allowfullscreen=""
-                                loading="lazy"></iframe>
+                                allowfullscreen="" loading="lazy"></iframe>
                     </div>
                 </div>
             </div>
+
             <div class="col-md-6">
                 <div class="info-card text-center">
                     <h1 class="section-title">Foto Kantor PMI</h1>
-                    <img class="foto-kantor-pmi" src="{{ asset('storage/foto-kantor-pmi.jpeg') }}" alt="Foto Kantor PMI">
+
+                    <!-- PERBAIKAN WRAPPER -->
+                    <div class="media-wrapper">
+                        <img class="foto-kantor-pmi" src="{{ asset('storage/foto-kantor-pmi.jpeg') }}" alt="Foto Kantor PMI">
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -170,7 +195,6 @@
         });
     </script>
 
-    <!-- SweetAlert -->
     @if(session('success'))
     <script>
         Swal.fire({

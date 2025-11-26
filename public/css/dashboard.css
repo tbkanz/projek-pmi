@@ -1,4 +1,6 @@
-/* Reset */
+/* ============================================================
+   GLOBAL RESET
+============================================================ */
 * {
     margin: 0;
     padding: 0;
@@ -6,148 +8,222 @@
 }
 
 body {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background: #f5f7fa;
-    padding-top: 100px;
-    color: #333;
+    font-family: "Inter", sans-serif;
+    background: #f2f4f8;
+    padding-top: 150px; /* diperbesar agar konten tidak tertutup navbar */
+    color: #222;
+    line-height: 1.5;
 }
 
-/* Navbar */
+/* ============================================================
+   NAVBAR
+============================================================ */
 .custom-navbar {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    min-height: 120px;
-    background: linear-gradient(135deg,#d90429, #d90429);
+    inset: 0 0 auto 0;
+    height: 130px;
+    padding: 0 50px;
+    background: linear-gradient(135deg, #b30000, #e60000);
     display: flex;
     align-items: center;
-    padding: 0 30px;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
     z-index: 1000;
-    color: white;
 }
 
 .logo img {
-    height: 70px;
-    width: auto;
+    height: 82px;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
 }
 
 .judul {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 26px;
-    font-weight: bold;
-    margin: 0;
+    font-size: 34px;
+    font-weight: 800;
     color: white;
-    letter-spacing: 0.5px;
-    text-align: center;
+    text-shadow: 0 4px 12px rgba(0,0,0,0.5);
 }
 
-.custom-navbar form .btn {
-    border-radius: 20px;
-    font-weight: 500;
-    padding: 6px 18px;
-}
-
-/* Tombol Tambah Data */
-.btn-tambah {
-    margin: 20px 20px 10px 0;
-    border-radius: 10px;
-    font-weight: 600;
-    background-color: #e63946;
+/* Logout */
+.custom-navbar .btn {
+    border-radius: 30px;
+    padding: 10px 30px;
+    font-weight: 700;
+    background: white;
+    color: #b30000;
     border: none;
-    transition: all 0.3s ease;
+    box-shadow: 0 6px 14px rgba(255,255,255,0.4);
+    transition: 0.2s ease;
+}
+.custom-navbar .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255,255,255,0.5);
+}
+
+/* ============================================================
+   BUTTON TAMBAH
+============================================================ */
+.btn-tambah {
+    background: #e60000;
+    border: none;
+    border-radius: 14px;
+    padding: 13px 26px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    box-shadow: 0 6px 16px rgba(230,0,0,0.4);
+    transition: 0.25s;
 }
 .btn-tambah:hover {
-    background-color: #d90429;
+    background: #b30000;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(179,0,0,0.45);
 }
 
-/* Container tabel */
+/* ============================================================
+   TABLE CONTAINER
+============================================================ */
 .table-container {
-    width: 100%;
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    margin-bottom: 30px;
+    background: #ffffffcc;
+    backdrop-filter: blur(6px);
+    padding: 35px;
+    border-radius: 22px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+    border-left: 6px solid #e60000;
+    overflow-x: auto;
 }
 
-/* Tabel */
+/* TABLE STYLE */
 .table {
-    border-collapse: separate;
-    border-spacing: 0 8px;
+    border-collapse: separate !important;
+    border-spacing: 0 14px !important;
+    width: 100%;
 }
 
 .table thead {
-    background: #d90429;
+    background: #b30000;
     color: white;
-    text-align: center;
 }
 
-.table th {
-    border: none !important;
-    padding: 12px;
-}
-
-.table td {
-    background: #fff;
-    border: none !important;
-    padding: 12px;
-    vertical-align: middle;
+.table thead th {
+    padding: 16px;
+    font-size: 15px;
+    font-weight: 700;
 }
 
 .table tbody tr {
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    border-radius: 8px;
-}
-
-.table tbody tr:hover td {
-    background: #f8f9fa;
-    transition: background 0.2s ease;
-}
-
-/* Judul section */
-.section-title {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 15px;
-    color: #444;
-}
-
-/* Map & Foto */
-.info-card {
-    background: #fff;
-    padding: 15px;
+    background: #ffffffee;
     border-radius: 12px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    transition: 0.18s ease;
 }
 
+.table tbody tr:hover {
+    transform: scale(1.007);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.15);
+}
+
+.table tbody td {
+    padding: 15px 18px;
+    font-size: 14px;
+}
+
+/* ============================================================
+   CARD (MAP, FOTO, GRAPH)
+============================================================ */
+.info-card {
+    background: #ffffffdd;
+    padding: 28px;
+    border-radius: 22px;
+    border-top: 5px solid #e60000;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+    transition: 0.25s;
+}
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 34px rgba(0,0,0,0.18);
+}
+
+/* Judul */
+.section-title {
+    font-size: 26px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: #333;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* ============================================================
+   MAP & FOTO — DIBUAT SAMA TINGGI (PERBAIKAN)
+============================================================ */
+.map-box,
+.photo-box {
+    height: 350px; /* tinggi sama */
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+/* iframe map – penuh container */
+.map-box iframe {
+    width: 100%;
+    height: 100%; /* PERBAIKAN */
+    border: 0;
+    border-radius: 18px;
+}
+
+/* foto kantor PMI – penuh container */
 .foto-kantor-pmi {
     width: 100%;
-    max-height: 320px;
-    object-fit: cover;
-    border-radius: 10px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    height: 100%; /* PERBAIKAN */
+    object-fit: cover; /* PERBAIKAN */
+    box-shadow: 0 10px 24px rgba(0,0,0,0.2);
+    border-radius: 18px;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .custom-navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 10px 20px;
+/* CHART */
+.chart-container {
+    width: 100%;
+    height: auto;
+}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 992px) {
+    .judul {
+        font-size: 26px;
+        position: static;
+        transform: none;
+        margin-left: 10px;
     }
 
-    .judul {
-        margin: 10px 0;
+    .custom-navbar {
+        height: auto;
+        padding: 20px;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .btn-tambah {
+        width: 100%;
+    }
+
+    .table-container {
+        padding: 20px;
+    }
+
+    .section-title {
         font-size: 20px;
     }
 
-    .btn-tambah {
-        width: 90%;
-        margin: 10px auto;
+    .map-box,
+    .photo-box {
+        height: 260px; /* tetap seragam */
     }
 }
