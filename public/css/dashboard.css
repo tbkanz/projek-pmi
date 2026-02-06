@@ -1,6 +1,10 @@
 /* ============================================================
    GLOBAL RESET
 ============================================================ */
+html, body {
+    overflow-x: hidden;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -10,7 +14,7 @@
 body {
     font-family: "Inter", sans-serif;
     background: #f2f4f8;
-    padding-top: 150px; /* diperbesar agar konten tidak tertutup navbar */
+    padding-top: 150px;
     color: #222;
     line-height: 1.5;
 }
@@ -20,7 +24,9 @@ body {
 ============================================================ */
 .custom-navbar {
     position: fixed;
-    inset: 0 0 auto 0;
+    top: 0;
+    left: 0;
+    right: 0;
     height: 130px;
     padding: 0 50px;
     background: linear-gradient(135deg, #b30000, #e60000);
@@ -45,7 +51,7 @@ body {
     text-shadow: 0 4px 12px rgba(0,0,0,0.5);
 }
 
-/* Logout */
+/* Logout Button */
 .custom-navbar .btn {
     border-radius: 30px;
     padding: 10px 30px;
@@ -56,6 +62,7 @@ body {
     box-shadow: 0 6px 14px rgba(255,255,255,0.4);
     transition: 0.2s ease;
 }
+
 .custom-navbar .btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 25px rgba(255,255,255,0.5);
@@ -64,7 +71,7 @@ body {
 /* ============================================================
    BUTTON TAMBAH
 ============================================================ */
-.btn-tambah {
+.btn-tambah{
     background: #e60000;
     border: none;
     border-radius: 14px;
@@ -75,58 +82,110 @@ body {
     box-shadow: 0 6px 16px rgba(230,0,0,0.4);
     transition: 0.25s;
 }
-.btn-tambah:hover {
+
+.btn-tambah:hover{
     background: #b30000;
     transform: translateY(-3px);
     box-shadow: 0 10px 24px rgba(179,0,0,0.45);
 }
 
 /* ============================================================
-   TABLE CONTAINER
+   TABLE CONTAINER (DIPERTAHANKAN SESUAI MAU KAMU)
 ============================================================ */
 .table-container {
     background: #ffffffcc;
     backdrop-filter: blur(6px);
-    padding: 35px;
+    height: auto;
+    max-height: none;
+    overflow-x: hidden;   /* 🔑 cegah scroll horizontal */
+    overflow-y: visible;
+    padding: 20px;
     border-radius: 22px;
     box-shadow: 0 12px 30px rgba(0,0,0,0.12);
     border-left: 6px solid #e60000;
-    overflow-x: auto;
 }
 
-/* TABLE STYLE */
+/* ============================================================
+   TABLE STYLE (RAPI & STABIL)
+============================================================ */
 .table {
-    border-collapse: separate !important;
-    border-spacing: 0 14px !important;
     width: 100%;
+    border-collapse: separate !important;
+    border-spacing: 0 10px !important;
+    table-layout: fixed;          /* 🔑 biar kolom nurut */
+    font-size: 13px;
 }
 
+/* HEADER */
 .table thead {
     background: #b30000;
-    color: white;
+    color: #fff;
 }
 
 .table thead th {
-    padding: 16px;
-    font-size: 15px;
+    padding: 10px 12px;
+    font-size: 13px;
     font-weight: 700;
+    text-align: center;
+    vertical-align: middle;
 }
 
+/* BODY */
+.table tbody td {
+    padding: 10px 12px;
+    font-size: 13px;
+    vertical-align: middle;
+    white-space: normal;          /* boleh turun baris */
+    word-break: break-word;       /* cegah melebar */
+}
+
+/* HOVER */
 .table tbody tr {
-    background: #ffffffee;
-    border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-    transition: 0.18s ease;
+    transition: 0.2s ease;
 }
 
 .table tbody tr:hover {
-    transform: scale(1.007);
+    transform: scale(1.005);
     box-shadow: 0 8px 22px rgba(0,0,0,0.15);
 }
 
-.table tbody td {
-    padding: 15px 18px;
-    font-size: 14px;
+/* ============================================================
+   BATASI KOLOM PANJANG (ANTI JELEK)
+============================================================ */
+/* Nama Pemohon */
+.table td:nth-child(5) {
+    max-width: 140px;
+}
+
+/* Instansi */
+.table td:nth-child(6) {
+    max-width: 140px;
+}
+
+/* Alamat */
+.table td:nth-child(7) {
+    max-width: 180px;
+    line-height: 1.4;
+}
+
+/* Kegiatan */
+.table td:nth-child(10) {
+    max-width: 160px;
+    line-height: 1.4;
+}
+
+/* ============================================================
+   KOLOM AKSI
+============================================================ */
+.table td:last-child {
+    min-width: 120px;
+    text-align: center;
+}
+
+.table td:last-child .btn {
+    font-size: 12px;
+    padding: 4px 8px;
+    margin: 2px 0;
 }
 
 /* ============================================================
@@ -134,20 +193,22 @@ body {
 ============================================================ */
 .info-card {
     background: #ffffffdd;
-    padding: 28px;
+    padding: 0; /* FIX TERPENTING */
     border-radius: 22px;
     border-top: 5px solid #e60000;
     backdrop-filter: blur(6px);
     box-shadow: 0 12px 30px rgba(0,0,0,0.1);
     transition: 0.25s;
 }
+
 .info-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 16px 34px rgba(0,0,0,0.18);
 }
 
-/* Judul */
 .section-title {
+    width: 100%;
+    text-align: center;
     font-size: 26px;
     font-weight: 800;
     margin-bottom: 20px;
@@ -157,36 +218,38 @@ body {
 }
 
 /* ============================================================
-   MAP & FOTO — DIBUAT SAMA TINGGI (PERBAIKAN)
+   MAP & FOTO — FIX UKURAN GAMBAR & MAP
 ============================================================ */
-.map-box,
-.photo-box {
-    height: 350px; /* tinggi sama */
+
+/* wrapper media */
+.media-wrapper {
+    height: 350px;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
     border-radius: 18px;
     overflow: hidden;
 }
 
-/* iframe map – penuh container */
-.map-box iframe {
+/* map & foto */
+.media-wrapper img,
+.media-wrapper iframe {
     width: 100%;
-    height: 100%; /* PERBAIKAN */
-    border: 0;
-    border-radius: 18px;
-}
-
-/* foto kantor PMI – penuh container */
-.foto-kantor-pmi {
-    width: 100%;
-    height: 100%; /* PERBAIKAN */
-    object-fit: cover; /* PERBAIKAN */
-    box-shadow: 0 10px 24px rgba(0,0,0,0.2);
-    border-radius: 18px;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 16px;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+    border: none;
 }
 
 /* CHART */
 .chart-container {
     width: 100%;
-    height: auto;
+}
+
+.chart{
+    padding: 22px;
 }
 
 /* ============================================================
@@ -198,6 +261,7 @@ body {
         position: static;
         transform: none;
         margin-left: 10px;
+        text-align: center;
     }
 
     .custom-navbar {
@@ -209,7 +273,6 @@ body {
 }
 
 @media (max-width: 768px) {
-
     .btn-tambah {
         width: 100%;
     }
@@ -224,6 +287,6 @@ body {
 
     .map-box,
     .photo-box {
-        height: 260px; /* tetap seragam */
+        height: 260px;
     }
 }

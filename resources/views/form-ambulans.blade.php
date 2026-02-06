@@ -10,10 +10,17 @@
 </head>
 <body>
     <!-- NAVBAR -->
-    <nav class="navbar bg-light px-3">
-        <div class="d-flex align-items-center">
-            <img class="logo-pmi" src="{{ asset('storage/logo-pmi.png') }}" alt="Logo PMI" height="50">
-            <h1 class="ms-3 h4">Formulir Pemakaian Ambulans PMI Kota Bogor</h1>
+    <nav class="custom-navbar d-flex align-items-center px-3">
+        <div class="logo">
+            <img class="logo-pmi" src="{{ asset('storage/logo-pmi.png') }}" alt="Logo PMI">
+        </div>
+        <h1 class="judul ms-3">Pemakaian Ambulans</h1>
+        <div class="ms-auto">
+            <!-- Logout menggunakan POST -->
+            <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                @csrf
+                <button type="submit" class="btn btn-danger px-4">Logout</button>
+            </form>
         </div>
     </nav>
 
@@ -28,12 +35,12 @@
                     <div class="col-md-6">
                         <label for="tanggal" class="form-label">Tanggal</label>
                         <input type="date" id="tanggal" name="tanggal" class="form-control"
-                               value="{{ old('tanggal') }}" required>
+                            value="{{ old('tanggal') }}" required>
                     </div>
                     <div class="col-md-6">
                         <label for="waktu" class="form-label">Waktu</label>
                         <input type="time" id="waktu" name="waktu" class="form-control"
-                               value="{{ old('waktu') }}" required>
+                            value="{{ old('waktu') }}" required>
                     </div>
                 </div>
 

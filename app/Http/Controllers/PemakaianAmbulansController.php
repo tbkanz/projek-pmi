@@ -12,17 +12,14 @@ class PemakaianAmbulansController extends Controller
     {
         $data = PemakaianAmbulans::latest()->get();
 
-        // Tahun sekarang
         $tahun = Carbon::now()->year;
 
-        // Hitung jumlah pemakaian per bulan untuk tahun ini
         $ambulansPerBulan = PemakaianAmbulans::selectRaw('MONTH(tanggal) as bulan, COUNT(*) as jumlah')
             ->whereYear('tanggal', $tahun)
             ->groupBy('bulan')
             ->pluck('jumlah', 'bulan')
             ->toArray();
 
-        // Buat array 12 bulan default = 0
         $perBulan = array_fill(1, 12, 0);
         foreach ($ambulansPerBulan as $bulan => $jumlah) {
             $perBulan[$bulan] = $jumlah;
@@ -41,7 +38,41 @@ class PemakaianAmbulansController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $validated = $this->validateForm($request);
+
+        PemakaianAmbulans::create($validated);
+
+        return redirect()->route('pemakaian-ambulans.index')
+            ->with('success', 'Data pemakaian ambulans berhasil disimpan.');
+    }
+
+    public function edit($id)
+    {
+        $data = PemakaianAmbulans::findOrFail($id);
+        return view('edit-ambulans', compact('data'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validated = $this->validateForm($request);
+
+        PemakaianAmbulans::findOrFail($id)->update($validated);
+
+        return redirect()->route('pemakaian-ambulans.index')
+            ->with('success', 'Data pemakaian ambulans berhasil diupdate.');
+    }
+
+    public function destroy($id)
+    {
+        PemakaianAmbulans::findOrFail($id)->delete();
+
+        return redirect()->route('pemakaian-ambulans.index')
+            ->with('success', 'Data pemakaian ambulans berhasil dihapus.');
+    }
+
+    private function validateForm(Request $request)
+    {
+        return $request->validate([
             'tanggal'           => 'required|date',
             'waktu'             => 'required',
             'nama_pasien'       => 'required|string|max:255',
@@ -56,10 +87,5 @@ class PemakaianAmbulansController extends Controller
             'kebutuhan_jam'     => 'nullable',
             'administrasi'      => 'required|string',
         ]);
-
-        PemakaianAmbulans::create($validated);
-
-        return redirect()->route('pemakaian-ambulans.create')
-            ->with('success', 'Data pemakaian ambulans berhasil disimpan.');
     }
 }
